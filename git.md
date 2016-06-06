@@ -11,7 +11,7 @@ git log --oneline --decorate --graph --all
 ```
 
 # untracked files
-if .gitignore file updated but files still tracked COMMIT CHANGES FIRST, they will be removed
+commit all changes first - they **will** be removed
 ```
 git rm -r --cached .
 git add .
