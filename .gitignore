@@ -1,0 +1,20 @@
+# ignore...
+
+# reference folder
+ref/
+
+# temporary folder/file
+tmp/
+*.tmp
+
+# zip files
+*.zip
+
+# matlab autosave files
+*.asv
+
+# ms office tmp files
+~$*.doc*
+~$*.xls*
+*.xlk
+~$*.ppt*
