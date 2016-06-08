@@ -51,7 +51,7 @@ git log --oneline --decorate --graph --all
 ```
 this produces the following:  
 
-![](git_log.png)
+![](git_log.PNG)
 
 Pretty, right? I like to alias it to `git logg` with the following:
 ```
