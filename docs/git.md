@@ -38,8 +38,9 @@ git add .
 git commit -m "this is a commit message. i updated some files"
 ```
 
-## log
-pretty commit view
+## helpful commands
+
+### pretty commit view
 ```
 git log --oneline --decorate
 ```
@@ -49,10 +50,19 @@ graph version
 git log --oneline --decorate --graph --all
 ```
 
+### aliases
+
+#### git hist
+Use the following alias for a quick view at the repo's history.
+```
+git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
+```
+Typing `git hist` then produces:
+
+![](git_hist.PNG)
 
 
-## untracked files
-clean up untracked files.
+### clean up untracked files.
 
 **note:** commit any/all changes first - they *will* be lost
 ```
