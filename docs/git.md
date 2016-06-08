@@ -38,9 +38,9 @@ git add .
 git commit -m "this is a commit message. i updated some files"
 ```
 
-## helpful commands
+## helpful commands and aliases
 
-### pretty commit view
+### pretty logs
 ```
 git log --oneline --decorate
 ```
@@ -49,10 +49,17 @@ graph version
 ```
 git log --oneline --decorate --graph --all
 ```
+this produces the following:  
 
-### aliases
+![](git_log.png)
 
-#### git hist
+Pretty, right? I like to alias it to `git logg` with the following:
+```
+git config --global alias.logg 'log --oneline --decorate --graph --all'
+```
+
+
+### git hist
 Use the following alias for a quick view at the repo's history.
 ```
 git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
