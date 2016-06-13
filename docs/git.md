@@ -53,9 +53,9 @@ this produces the following:
 
 ![](git_log.PNG)
 
-Pretty, right? I like to alias it to `git logg` with the following:
+Pretty, right? I like to add a line limit and alias it to `git logg` with the following:
 ```
-git config --global alias.logg 'log --oneline --decorate --graph --all'
+git config --global alias.logg 'log --oneline --decorate --graph --all --max-count 10'
 ```
 
 
