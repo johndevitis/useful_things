@@ -1,7 +1,7 @@
 # git
 
 
-## setup
+# setup
 1. download and install [git](https://git-scm.com/download/win)
 
 2. create github account at github.com. git is the local tool, github integrates with git to provide
@@ -13,7 +13,7 @@ git config --global user.name "John DeVitis"
 git config --global user.email johndevitis@gmail.com
 ```
 
-## basics
+# basics
 Tracked files in a git repository have three basic states:
 
 1. __Modified__ changes have been made to a file but have not been staged for a commit yet.
@@ -38,9 +38,30 @@ git add .
 git commit -m "this is a commit message. i updated some files"
 ```
 
-## helpful commands and aliases
+# helpful commands and aliases
 
-### pretty logs
+## tagging
+Tags are essentially pointers to specific commits. View the repos tags with `git tag`.
+
+Create a lightweight tag on the current commit with:
+```
+git tag v0.1
+```
+
+A more robust way of tagging is the annotated tag. Annotated tags contain more information like the taggers name, email, tagging message, etc. They're just about as easy to create as lightweight tags so they're generally recommended
+
+Create an annotated tag with version number and custom message with:
+
+```
+git tag -a v0.1 -m "this is version 0.1"
+```
+
+View detailed information of the tag and tagged commit with:
+```
+git show v0.1
+```
+
+## pretty logs
 ```
 git log --oneline --decorate
 ```
@@ -59,8 +80,8 @@ git config --global alias.logg 'log --oneline --decorate --graph --all --max-cou
 ```
 
 
-### git hist
-Use the following alias for a quick view at the repo's history.
+## git hist
+Use the following alias for a quick, slightly more detailed view of the repo's history.
 ```
 git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 ```
@@ -69,7 +90,7 @@ Typing `git hist` then produces:
 ![](git_hist.PNG)
 
 
-### clean up untracked files.
+## clean up untracked files.
 
 **note:** commit any/all changes first - they *will* be lost
 ```
@@ -80,7 +101,7 @@ git commit -m "fixed untracked files"
 
 
 
-## links
+# links
 [download](https://git-scm.com)
 
 [manual](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
