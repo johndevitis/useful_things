@@ -1,6 +1,3 @@
-# git
-
-
 # setup
 1. download and install [git](https://git-scm.com/download/win)
 
@@ -14,7 +11,32 @@ git config --global user.email johndevitis@gmail.com
 ```
 
 # basics
-Tracked files in a git repository have three basic states:
+
+## starting out
+
+When starting a new git repository, you can either initialize the repository or clone an existing one. Use `git init` to initialize an existing project or when starting a new project from scratch. Use `git clone <folder/url>` to clone an existing repo - this can be used with a path to a local folder or with a url to the remotely hosted repo.
+
+__example:__
+
+* clone this repo to your machine:
+```
+git clone https://github.com/johndevitis/useful_things
+```
+this will download the contents of the repo and create a folder called *useful_things* in the current working directory of the git bash.
+
+* navigate to the folder
+```
+cd useful_things
+```
+
+* list the contents
+```
+ls
+```
+
+
+## file states
+Files in a git repository are either tracked or untacked. Use `git add <filename>` to start tracking files. Tracked files in a git repository have three basic states:
 
 1. __Modified__ changes have been made to a file but have not been staged for a commit yet.
 
@@ -22,21 +44,33 @@ Tracked files in a git repository have three basic states:
 
 3. __Committed__ the data is safely stored in the local repository
 
-Basic workflow:
-1. Modify files in working directory (work as normal). Check for any modified files with
+When starting out its best to only keep files that you want to track in the git repository and commit changes often. Untracked files will be deleted when switching between branches or specific commits that don't have those files present, so be careful.
+
+
+## workflow:
+
+1. Initialize or clone a repository
+
+2. Modify files in working directory (work as normal).
+
+3. Check for any modified or untracked files with
 ```
 git status
 ```
 
-2. Stage the files with add
-```
-git add .
-```
+4. Add untracked files or stage any changes to tracked files within the  `git add <filename>`. Stage all changes with `git add .`
 
-3. Commit to take the staged files (as they were when you added them) and store a snapshot permanently to the git directory
+5. Commit to take the staged files (as they were when you added them) and store a snapshot permanently within the git directory
 ```
 git commit -m "this is a commit message. i updated some files"
 ```
+
+6. Check and merge changes in the remote repository.
+```
+git pull
+```
+
+---
 
 # helpful commands and aliases
 
@@ -70,13 +104,10 @@ graph version
 ```
 git log --oneline --decorate --graph --all
 ```
-this produces the following:  
-
-![](git_log.PNG)
 
 Pretty, right? I like to add a line limit and alias it to `git logg` with the following:
 ```
-git config --global alias.logg 'log --oneline --decorate --graph --all --max-count 20'
+git config --global alias.logg 'log --oneline --decorate --graph --all --max-count 12'
 ```
 
 
@@ -87,7 +118,6 @@ git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --grap
 ```
 Typing `git hist` then produces:
 
-![](git_hist.PNG)
 
 
 ## clean up untracked files.
@@ -99,7 +129,7 @@ git add .
 git commit -m "fixed untracked files"
 ```
 
-
+---
 
 # links
 [download](https://git-scm.com)
