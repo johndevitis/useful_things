@@ -124,7 +124,6 @@ git config status.submodulesummary 1
 
 
 
-
 # helpful commands and aliases
 
 ## tagging
@@ -192,3 +191,30 @@ git commit -m "fixed untracked files"
 [cheatsheet](https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf)
 
 [common ignore files](https://github.com/github/gitignore)
+
+
+# Useful config settings
+
+## Make notepad++ default editor
+For 64-bit windows nad 32-bit install of notepad++:
+```
+git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+```
+
+# Useful tools
+
+## merge tool
+[kdiff3](http://kdiff3.sourceforge.net/)
+
+add the following to the `.gitconfig` file:
+```
+[merge]
+    tool = kdiff3
+
+[mergetool "kdiff3"]
+    path = C:/YourPathToBinaryHere/KDiff3/kdiff3.exe
+    keepBackup = false
+    trustExitCode = false
+```
+
+
