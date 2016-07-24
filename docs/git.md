@@ -72,6 +72,59 @@ git pull
 
 ---
 
+## Submodules
+
+Submodules allow for multiple, independent repos to be included in a single project/repo. 
+
+[submodule-reference](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+
+Add a submodule with:
+```
+git submodule add https://github.com/johndevitis/filio
+```
+
+### Cloning submodules
+When cloning a project with submodules the submodule will initially be empty. You need to initialize and update to populate the repo:
+```
+git clone httsp://github.com/johndevitis/useful_things
+git submodule init
+git submodule update
+```
+
+Or you can pass `--recursive` to the `git clone` command:
+```
+git clone --recursive https://github.com/johndevitis/useful_things
+```
+
+### Pulling submodules
+
+To fetch and merge changes to a submodule use:
+```
+git submodule update --remote <REPO_NAME>
+```
+*where REPO_NAME is replaced by the repository name (found in the .gitmodules file)*
+
+Additionally you can use `git submodule update --remote` to update all submodules.
+
+
+To track and pull from specific branches in the repo either edit the `.gitmodules` file so everyone can pull from the same remote submodule repo:
+```
+git config -f .gitmodules submodule.<REPO_NAME>.branch <BRANCH_NAME>
+```
+
+
+
+### Useful submodule aliases
+
+Link `git status` to show summary of changes in submodules
+```
+git config status.submodulesummary 1
+``` 
+
+
+
+
+
 # helpful commands and aliases
 
 ## tagging
