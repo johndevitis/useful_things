@@ -1,0 +1,142 @@
+<h1>setup</h1>
+<ol>
+<li>
+<p>download and install <a href="https://git-scm.com/download/win">git</a></p>
+</li>
+<li>
+<p>create github account at github.com. git is the local tool, github integrates with git to provide
+    online hosting and integration w/ others</p>
+</li>
+<li>
+<p>configure user data - open git bash anywhere and enter:
+<code>git config --global user.name "John DeVitis"
+git config --global user.email johndevitis@gmail.com</code></p>
+</li>
+</ol>
+<h1>basics</h1>
+<h2>starting out</h2>
+<p>When starting a new git repository, you can either initialize the repository or clone an existing one. Use <code>git init</code> to initialize an existing project or when starting a new project from scratch. Use <code>git clone &lt;folder/url&gt;</code> to clone an existing repo - this can be used with a path to a local folder or with a url to the remotely hosted repo.</p>
+<p><strong>example:</strong></p>
+<ul>
+<li>
+<p>clone this repo to your machine:
+<code>git clone https://github.com/johndevitis/useful_things</code>
+this will download the contents of the repo and create a folder called <em>useful_things</em> in the current working directory of the git bash.</p>
+</li>
+<li>
+<p>navigate to the folder
+<code>cd useful_things</code></p>
+</li>
+<li>
+<p>list the contents
+<code>ls</code></p>
+</li>
+</ul>
+<h2>file states</h2>
+<p>Files in a git repository are either tracked or untacked. Use <code>git add &lt;filename&gt;</code> to start tracking files. Tracked files in a git repository have three basic states:</p>
+<ol>
+<li>
+<p><strong>Modified</strong> changes have been made to a file but have not been staged for a commit yet.</p>
+</li>
+<li>
+<p><strong>Staged</strong> a modified file has been marked to go into the next commit snapshot (git creates snapshots instead of tracking changes so we don't have to worry about losing data inmost circumstances)</p>
+</li>
+<li>
+<p><strong>Committed</strong> the data is safely stored in the local repository</p>
+</li>
+</ol>
+<p>When starting out its best to only keep files that you want to track in the git repository and commit changes often. Untracked files will be deleted when switching between branches or specific commits that don't have those files present, so be careful.</p>
+<h2>workflow:</h2>
+<ol>
+<li>
+<p>Initialize or clone a repository</p>
+</li>
+<li>
+<p>Modify files in working directory (work as normal).</p>
+</li>
+<li>
+<p>Check for any modified or untracked files with
+<code>git status</code></p>
+</li>
+<li>
+<p>Add untracked files or stage any changes to tracked files within the  <code>git add &lt;filename&gt;</code>. Stage all changes with <code>git add .</code></p>
+</li>
+<li>
+<p>Commit to take the staged files (as they were when you added them) and store a snapshot permanently within the git directory
+<code>git commit -m "this is a commit message. i updated some files"</code></p>
+</li>
+<li>
+<p>Check and merge changes in the remote repository.
+<code>git pull</code></p>
+</li>
+</ol>
+<hr />
+<h2>Submodules</h2>
+<p>Submodules allow for multiple, independent repos to be included in a single project/repo. </p>
+<p><a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">submodule-reference</a></p>
+<p>Add a submodule with:
+<code>git submodule add https://github.com/johndevitis/filio</code></p>
+<h3>Cloning submodules</h3>
+<p>When cloning a project with submodules the submodule will initially be empty. You need to initialize and update to populate the repo:
+<code>git clone httsp://github.com/johndevitis/useful_things
+git submodule init
+git submodule update</code></p>
+<p>Or you can pass <code>--recursive</code> to the <code>git clone</code> command:
+<code>git clone --recursive https://github.com/johndevitis/useful_things</code></p>
+<h3>Pulling submodules</h3>
+<p>To fetch and merge changes to a submodule use:
+<code>git submodule update --remote &lt;REPO_NAME&gt;</code>
+<em>where REPO_NAME is replaced by the repository name (found in the .gitmodules file)</em></p>
+<p>Additionally you can use <code>git submodule update --remote</code> to update all submodules.</p>
+<p>To track and pull from specific branches in the repo either edit the <code>.gitmodules</code> file so everyone can pull from the same remote submodule repo:
+<code>git config -f .gitmodules submodule.&lt;REPO_NAME&gt;.branch &lt;BRANCH_NAME&gt;</code></p>
+<h3>Useful submodule aliases</h3>
+<p>Link <code>git status</code> to show summary of changes in submodules
+<code>git config status.submodulesummary 1</code> </p>
+<h1>helpful commands and aliases</h1>
+<h2>tagging</h2>
+<p>Tags are essentially pointers to specific commits. View the repos tags with <code>git tag</code>.</p>
+<p>Create a lightweight tag on the current commit with:
+<code>git tag v0.1</code></p>
+<p>A more robust way of tagging is the annotated tag. Annotated tags contain more information like the taggers name, email, tagging message, etc. They're just about as easy to create as lightweight tags so they're generally recommended</p>
+<p>Create an annotated tag with version number and custom message with:</p>
+<p><code>git tag -a v0.1 -m "this is version 0.1"</code></p>
+<p>View detailed information of the tag and tagged commit with:
+<code>git show v0.1</code></p>
+<h2>pretty logs</h2>
+<p><code>git log --oneline --decorate</code></p>
+<p>graph version
+<code>git log --oneline --decorate --graph --all</code></p>
+<p>Pretty, right? I like to add a line limit and alias it to <code>git logg</code> with the following:
+<code>git config --global alias.logg 'log --oneline --decorate --graph --all --max-count 12'</code></p>
+<h2>git hist</h2>
+<p>Use the following alias for a quick, slightly more detailed view of the repo's history.
+<code>git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'</code>
+Typing <code>git hist</code> then produces:</p>
+<h2>clean up untracked files.</h2>
+<p><strong>note:</strong> commit any/all changes first - they <em>will</em> be lost
+<code>git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"</code></p>
+<hr />
+<h1>links</h1>
+<p><a href="https://git-scm.com">download</a></p>
+<p><a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">manual</a></p>
+<p><a href="https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf">cheatsheet</a></p>
+<p><a href="https://github.com/github/gitignore">common ignore files</a></p>
+<h1>Useful config settings</h1>
+<h2>Make notepad++ default editor</h2>
+<p>For 64-bit windows nad 32-bit install of notepad++:
+<code>git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></p>
+<h1>Useful tools</h1>
+<h2>merge tool</h2>
+<p><a href="http://kdiff3.sourceforge.net/">kdiff3</a></p>
+<p>add the following to the <code>.gitconfig</code> file:
+```
+[merge]
+    tool = kdiff3</p>
+<p>[mergetool "kdiff3"]
+    path = C:/YourPathToBinaryHere/KDiff3/kdiff3.exe
+    keepBackup = false
+    trustExitCode = false
+```</p>
