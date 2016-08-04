@@ -1,0 +1,6 @@
+{
+  "name": "Useful things",
+  "tagline": "A random collection of useful things ",
+  "body": "# useful_things\r\nA random collection of useful things\r\n\r\n\r\n## index\r\n[atom](docs/atom.md)\r\n\r\n[git](docs/git.md)\r\n\r\n[markdown](docs/markdown.md)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
